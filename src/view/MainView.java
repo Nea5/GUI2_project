@@ -2,8 +2,6 @@ package view;
 
 import javax.swing.JFrame;
 
-import com.sun.codemodel.internal.JLabel;
-
 public class MainView {
 
 	JFrame mainFrame;
