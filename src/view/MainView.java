@@ -1,21 +1,28 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Insets;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-public class MainView {
+@SuppressWarnings("serial")
+public class MainView extends JFrame{
 
-	JFrame mainFrame;
+	
+	private JPanel mainPanel = (JPanel) getContentPane()	;
+	//insert a drawed circle according to coordinates 
 	
 	
-	public MainView() {
-		mainFrame = new JFrame("Spirograph");
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+
+	public void initView()
+	{
+		//setBackground(Color.blue);
+		//mainPanel.setSize(600, 600);
+		mainPanel.setBorder(new EmptyBorder(new Insets(400,400,300,400)));
+		this.pack();
 	}
-	
-	public static void main(String[] args){
-		new MainView();
-	}
+
 }
