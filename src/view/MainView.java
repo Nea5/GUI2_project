@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Insets;
 
 import javax.swing.JFrame;
@@ -19,10 +18,11 @@ public class MainView extends JFrame{
 
 	public void initView()
 	{
-		//setBackground(Color.blue);
-		//mainPanel.setSize(600, 600);
+		
 		mainPanel.setBorder(new EmptyBorder(new Insets(400,400,300,400)));
 		this.pack();
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 	}
 
 }
