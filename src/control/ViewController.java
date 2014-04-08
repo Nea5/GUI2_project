@@ -18,6 +18,7 @@ public class ViewController {
 	}
 
 	
+	
 	public void drawView()
 	{
 		mainView.initView();
