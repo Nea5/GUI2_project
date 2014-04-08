@@ -13,11 +13,15 @@ public class ViewController {
 
 	}
 	
+	public void addPanels() {
+		
+	}
+	
 	public void drawView()
 	{
 		mainView.initView();
-		mainView.setTitle("SpiroGraph");
-		mainView.setLocationRelativeTo(null);
+		//mainView.setTitle("SpiroGraph");
+		//mainView.setLocationRelativeTo(null);
 		mainView.setVisible(true);
 		
 		

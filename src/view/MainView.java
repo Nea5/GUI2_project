@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.SwingUtilities;
 import java.awt.Insets;
 
 import javax.swing.JFrame;
@@ -9,8 +10,14 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class MainView extends JFrame{
 
+	static JFrame mainFrame;
+	//static JPanel drawPanel;
 	
-	private JPanel mainPanel = (JPanel) getContentPane()	;
+	public void initComponents() {
+		mainFrame = new JFrame("Spirograph");
+	}
+	
+	//private JPanel drawPanel = (JPanel) getContentPane();
 	//insert a drawed circle according to coordinates 
 	
 	
@@ -19,9 +26,10 @@ public class MainView extends JFrame{
 	public void initView()
 	{
 		
-		mainPanel.setBorder(new EmptyBorder(new Insets(400,400,300,400)));
-		this.pack();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		mainFrame.setSize(400, 400);
+		//mainView.setBorder(new EmptyBorder(new Insets(400,400,300,400)));
+		mainFrame.pack();
+		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	}
 
