@@ -14,7 +14,9 @@ public class MainView extends JFrame{
 	//static JPanel drawPanel;
 	
 	public void initComponents() {
-		mainFrame = new JFrame("Spirograph");
+		mainFrame = new JFrame();
+		mainFrame.setSize(400, 400);
+
 	}
 	
 	//private JPanel drawPanel = (JPanel) getContentPane();
@@ -25,9 +27,8 @@ public class MainView extends JFrame{
 
 	public void initView()
 	{
-		
-		mainFrame.setSize(400, 400);
 		//mainView.setBorder(new EmptyBorder(new Insets(400,400,300,400)));
+		initComponents();
 		mainFrame.pack();
 		mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
