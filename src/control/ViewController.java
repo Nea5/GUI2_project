@@ -1,5 +1,9 @@
 package control;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
 import view.MainView;
 
 public class ViewController {
@@ -12,18 +16,17 @@ public class ViewController {
 		mainView = view;
 
 	}
-	
-	public void addPanels() {
-		
-	}
+
 	
 	public void drawView()
 	{
 		mainView.initView();
 		mainView.setTitle("SpiroGraph");
+		mainView.setSize(400, 400);
+		mainView.setLayout(new BorderLayout());
 		mainView.setLocationRelativeTo(null);
 		mainView.setVisible(true);
-		
+		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
 	
