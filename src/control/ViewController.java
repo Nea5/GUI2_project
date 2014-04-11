@@ -1,6 +1,9 @@
 package control;
 
+import graphics.Line;
+
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 
@@ -24,7 +27,7 @@ public class ViewController {
 		mainView.initView();
 		mainView.setTitle("SpiroGraph");
 		mainView.setSize(400, 400);
-		mainView.setLayout(new BorderLayout());
+		mainView.setLayout(new FlowLayout());
 		mainView.setLocationRelativeTo(null);
 		mainView.setVisible(true);
 		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

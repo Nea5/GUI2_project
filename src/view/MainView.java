@@ -1,5 +1,7 @@
 package view;
 
+import graphics.Line;
+
 import javax.swing.SwingUtilities;
 
 import java.awt.BorderLayout;
@@ -20,7 +22,8 @@ public class MainView extends JFrame {
 
 
 	public MainView() {
-		this.add(new drawPanel(), BorderLayout.SOUTH);
+		this.add(new DrawPanel());
+		
 	}
 
 	
@@ -34,6 +37,7 @@ public class MainView extends JFrame {
 	{
 		//mainView.setBorder(new EmptyBorder(new Insets(400,400,300,400)));
 		this.pack();
-	}
+		
+		}
 
 }
