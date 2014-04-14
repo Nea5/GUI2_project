@@ -1,8 +1,9 @@
 package view;
 
+import graphics.Circles;
 import graphics.Line;
-import graphics.Wheels;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.QuadCurve2D;
 
 import javax.swing.BorderFactory;
@@ -18,9 +20,23 @@ import javax.swing.border.EmptyBorder;
 
 public class DrawPanel extends JPanel {
 	
+	static double xTopLeft, yTopLeft, radiusTopLeft, xBigCenter, yBigCenter, radiusBig, xSmallCenter, ySmallCenter, radiusSmall;
+	
 	
 	public DrawPanel(){
-		this.add(new Line(0,0,400,400));
+		xTopLeft = 0;
+		yTopLeft = 0;
+		radiusTopLeft = 200;
+		xBigCenter = xTopLeft + (radiusTopLeft/2);
+		yBigCenter = yTopLeft + (radiusTopLeft/2);
+		radiusBig = 200;
+		radiusSmall = 100;
+		xSmallCenter = xBigCenter - radiusSmall;
+		ySmallCenter = yBigCenter - (radiusSmall/2);
+		
+		
+		//this.add(new Line(0,0,400,400), BorderLayout.WEST);
+		this.add(new Circles(xTopLeft, yTopLeft, radiusTopLeft, xSmallCenter, ySmallCenter, radiusSmall));
 		//this.setVisible(true);
 		//this.setSize(new Dimension(400, 400));
 		//setBorder(BorderFactory.createLineBorder(Color.black));

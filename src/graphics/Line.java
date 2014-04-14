@@ -37,7 +37,7 @@ public class Line extends JPanel implements ActionListener{
     midx = (x1+x2)/2;
     midy = (y1+y2)/2;
     time.start();
-    setPreferredSize(new Dimension(400, 400));
+    setPreferredSize(new Dimension(200, 200));
   }
 
   public static void animateLine(Graphics2D g, QuadCurve2D Q){

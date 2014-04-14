@@ -27,7 +27,8 @@ public class ViewController {
 		mainView.initView();
 		mainView.setTitle("SpiroGraph");
 		mainView.setSize(400, 400);
-		mainView.setLayout(new FlowLayout());
+		//mainView.setLayout(new FlowLayout());
+		mainView.setLayout(new BorderLayout());
 		mainView.setLocationRelativeTo(null);
 		mainView.setVisible(true);
 		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
