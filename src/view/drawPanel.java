@@ -31,7 +31,7 @@ public class DrawPanel extends JPanel {
 		yBigCenter = yTopLeft + (radiusTopLeft/2);
 		radiusBig = 200;
 		radiusSmall = 100;
-		xSmallCenter = xBigCenter - radiusSmall;
+		xSmallCenter = xBigCenter - (radiusSmall/2);
 		ySmallCenter = yBigCenter - (radiusSmall/2);
 		
 		
