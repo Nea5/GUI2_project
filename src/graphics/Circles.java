@@ -17,9 +17,14 @@ public class Circles extends JPanel implements ActionListener {
 	static Ellipse2D.Double smallCircle;
 	private static double angle;
 	private static double step;
+	private static double circleCenter;
+	private double R = 51;
+	private double r = -18;
+	private double a = 47;
+	private double t = 0;
 	
 	
-	  Timer time = new Timer(100, (ActionListener) this);
+	  Timer time = new Timer(1, (ActionListener) this);
 
 	
 	public Circles(double xLarge, double yLarge, double radiusLarge, double xSmall, double ySmall, double radiusSmall) {
@@ -29,7 +34,6 @@ public class Circles extends JPanel implements ActionListener {
 		 time.start();
 	}
 	
-
 	private void updateCircle(Ellipse2D.Double e, double newX, double newY){
 		e.x = newX;
 		e.y = newY;
@@ -40,7 +44,6 @@ public class Circles extends JPanel implements ActionListener {
 		g.draw(c);
 		
 	}
-
 
 	public void setX(Ellipse2D.Double e, double newX){
 		e.x = newX;
@@ -55,8 +58,7 @@ public class Circles extends JPanel implements ActionListener {
 		e.height = radius;
 	}
 	
-	
-	  public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g){
 		  super.paintComponent(g);
 		  Graphics2D g2d = (Graphics2D)g;
 		 
@@ -67,33 +69,35 @@ public class Circles extends JPanel implements ActionListener {
 
 	  }
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		setX(smallCircle, (R+r) * Math.cos(t) - (r+a) * Math.cos(((R+r)/r)*t));
+		setY(smallCircle, (R+r) * Math.sin(t) - (r+a) * Math.sin(((R+r)/r)*t));
+		t+= 0.001;
+		repaint();
+		/*
 		if(smallCircle.getX() < (largeCircle.getWidth() - smallCircle.getWidth())){
 			setX(smallCircle, smallCircle.getX() + 1.0);
 			//setY(smallCircle, smallCircle.getY() + 1.0);
 			repaint();	
-		}
+		}*/
 	}
-
 
 	public static double getAngle() {
 		return angle;
 	}
 
-
 	public static void setAngle(double angle) {
 		Circles.angle = angle;
 	}
-
 
 	public static double getStep() {
 		return step;
 	}
 
-
 	public static void setStep(double step) {
 		Circles.step = step;
 	}
+
 }
