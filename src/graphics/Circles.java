@@ -1,27 +1,33 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Circles extends JPanel implements ActionListener {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	static Ellipse2D.Double largeCircle;
 	static Ellipse2D.Double smallCircle;
+	static Line testLine= new Line(); 
 	private static double angle;
 	private static double step;
-	private static double circleCenter;
 	private double R = 51;
 	private double r = -18;
 	private double a = 47;
 	private double t = 0;
+	private final Color LINE_COLOR = Color.RED;
 	
 	
 	  Timer time = new Timer(1, (ActionListener) this);
@@ -64,9 +70,13 @@ public class Circles extends JPanel implements ActionListener {
 		 
 		  g2d.draw(largeCircle);
 		  g2d.draw(smallCircle);
-		  //g2d.drawRect(0, 0, 40, 40);
+		  
+		  g.setColor(LINE_COLOR);
 		  moveCircle(smallCircle, g2d, smallCircle.getX(), smallCircle.getY());
-
+		  testLine.addPointLine((int)smallCircle.getCenterX(), (int)smallCircle.getCenterY());
+		  testLine.draw(g);
+	         
+		  
 	  }
 
 	@Override
@@ -75,13 +85,10 @@ public class Circles extends JPanel implements ActionListener {
 		setX(smallCircle, (R+r) * Math.cos(t) - (r+a) * Math.cos(((R+r)/r)*t));
 		setY(smallCircle, (R+r) * Math.sin(t) - (r+a) * Math.sin(((R+r)/r)*t));
 		t+= 0.001;
+		
 		repaint();
-		/*
-		if(smallCircle.getX() < (largeCircle.getWidth() - smallCircle.getWidth())){
-			setX(smallCircle, smallCircle.getX() + 1.0);
-			//setY(smallCircle, smallCircle.getY() + 1.0);
-			repaint();	
-		}*/
+	
+		
 	}
 
 	public static double getAngle() {
