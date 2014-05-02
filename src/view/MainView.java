@@ -1,20 +1,7 @@
 package view;
 
-import graphics.Line;
-
-import javax.swing.SwingUtilities;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Insets;
-
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+
 
 @SuppressWarnings("serial")
 public class MainView extends JFrame {
