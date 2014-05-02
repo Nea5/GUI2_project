@@ -1,24 +1,18 @@
 package view;
 
+import javax.swing.JPanel;
+
 import graphics.Circles;
 import graphics.Line;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.QuadCurve2D;
 
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class DrawPanel extends JPanel {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	static double xTopLeft, yTopLeft, radiusTopLeft, xBigCenter, yBigCenter, radiusBig, xSmallCenter, ySmallCenter, radiusSmall;
 	
@@ -37,12 +31,16 @@ public class DrawPanel extends JPanel {
 		
 		//this.add(new Line(0,0,400,400), BorderLayout.WEST);
 		this.add(new Circles(xTopLeft, yTopLeft, radiusTopLeft, xSmallCenter, ySmallCenter, radiusSmall));
+		this.add(new Line());
 		//this.setVisible(true);
 		//this.setSize(new Dimension(400, 400));
 		//setBorder(BorderFactory.createLineBorder(Color.black));
 		//this.add(new Line());
 		//this.setBorder(BorderFactory.createLineBorder(Color.black));
 	}
+
+
+
 
 
 
