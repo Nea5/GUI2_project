@@ -14,27 +14,25 @@ import javax.swing.Timer;
 public class Circles extends JPanel{
 	
 	/**
-	 * 
+	 * change for commit
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	static Ellipse2D.Double largeCircle;
-	static Ellipse2D.Double smallCircle; 
+	public static Ellipse2D.Double largeCircle;
+	public static Ellipse2D.Double smallCircle; 
 	private static double angle;
 	private static double step;
-
-	
 	
 
 
-	
-	public Circles(double xLarge, double yLarge, double radiusLarge, double xSmall, double ySmall, double radiusSmall) {
-		 largeCircle = new Ellipse2D.Double(xLarge, yLarge, radiusLarge, radiusLarge);
-		 smallCircle = new Ellipse2D.Double(xSmall, ySmall, radiusSmall, radiusSmall);		
-		 setPreferredSize(new Dimension(1000, 1000));
-
+	public Circles(double R, double smallX, double smallY, double r){
+		largeCircle = new Ellipse2D.Double(0, 0, R, R);
+		smallCircle = new Ellipse2D.Double(smallX, smallY, r, r);
+		setPreferredSize(new Dimension(1000, 1000));
 	}
 	
+	
+		
 	public void updateSmallCircle(Ellipse2D.Double e, double newX, double newY){
 		e.x = newX;
 		e.y = newY;
@@ -55,21 +53,7 @@ public class Circles extends JPanel{
 		e.height = radius;
 	}
 	
-	public void paintComponent(Graphics g){
-		  /*super.paintComponent(g);
-		  Graphics2D g2d = (Graphics2D)g;
-		 
-		  g2d.draw(largeCircle);
-		  g2d.draw(smallCircle);
-		  
-		  g.setColor(LINE_COLOR);
-		  moveCircle(smallCircle, g2d, smallCircle.getX(), smallCircle.getY());
-		  testLine.addPointLine((int)smallCircle.getCenterX(), (int)smallCircle.getCenterY());
-		  testLine.draw(g);*/
-	         
-		  
-	  }
-
+	
 
 	public static double getAngle() {
 		return angle;

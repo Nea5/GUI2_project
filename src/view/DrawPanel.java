@@ -22,53 +22,83 @@ public class DrawPanel extends JPanel implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	static double xTopLeft, yTopLeft, radiusTopLeft, xBigCenter, yBigCenter, radiusBig, xSmallCenter, ySmallCenter, radiusSmall;
-	private double R = 51;
-	private double r = -18;
-	private double a = 47;
-	private double t = 0;
-	public Circles circles; 
+	//static double xTopLeft, yTopLeft, radiusTopLeft, xBigCenter, yBigCenter, radiusBig, xSmallCenter, ySmallCenter, radiusSmall, origoX, origoY;
+	//andrasadasd
+	public Circles circles;
+	
+	static double width;
+	static double height;
+	static double x;
+	static double y;
+	static double R;
+	static double r;
+	static double origoX;
+	static double origoY;
+	
+	static double a;
+	static double k;
+	static double l;
+	static double p;
+	static double t;
+	static double yPen;
+	static double xPen;
+	static double xc;
+	static double yc;
+	static double fulhackX;
+	static double fulhackY;	
+	
 	Timer time = new Timer(1, (ActionListener) this);
 	static Line testLine= new Line(); 
 	private final Color LINE_COLOR = Color.RED;
 	
 	public DrawPanel(){
-		xTopLeft = 0;
-		yTopLeft = 0;
-		radiusTopLeft = 200;
-		xBigCenter = xTopLeft + (radiusTopLeft/2);
-		yBigCenter = yTopLeft + (radiusTopLeft/2);
-		radiusBig = 200;
-		radiusSmall = 100;
-		xSmallCenter = xBigCenter - (radiusSmall/2);
-		ySmallCenter = yBigCenter - (radiusSmall/2);
+		
+		origoX = 0;
+		origoY = 0;
+		width = 300;
+		height = width;
+		R = width/2;
+		r = 40;
+		x = origoX + width/2;
+		y = origoY + width /2;
 		
 		
-		//this.add(new Line(0,0,400,400), BorderLayout.WEST);
-		this.add(circles = new Circles(xTopLeft, yTopLeft, radiusTopLeft, xSmallCenter, ySmallCenter, radiusSmall));
+		p = 20;
+		t = 0;
+		xc = x + (R - r) * Math.cos(t);
+		yc = y + (R - r) * Math.sin(t);
+		l = p/r;
+		k = r/R;
+		yPen = R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
+		xPen = R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
+
+		this.add(circles = new Circles(R*2, xc, yc, r*2));
 		this.add(new Line());
 		time.start();
-		//this.setVisible(true);
-		//this.setSize(new Dimension(400, 400));
-		//setBorder(BorderFactory.createLineBorder(Color.black));
-		//this.add(new Line());
-		//this.setBorder(BorderFactory.createLineBorder(Color.black));
-	}
+		}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		circles.setSmallCircleX(circles.getSmallCircle(), 1- Math.cos(t));
-		circles.setSmallCircleY(circles.getSmallCircle(), 1- Math.cos(t));
-		//circles.setSmallCircleX(circles.getSmallCircle() ,(R+r) * Math.cos(t) - (r+a) * Math.cos(((R+r)/r)*t));
-		//circles.setSmallCircleY( circles.getSmallCircle(),(R+r) * Math.sin(t) - (r+a) * Math.sin(((R+r)/r)*t));
+
+		fulhackY =y-r + R*((1-k)*Math.sin(t)-0*k*Math.sin(((1-k)/k)*t));
+		fulhackX =x-r + R*((1-k)*Math.cos(t)+0*k*Math.cos(((1-k)/k)*t));
+		circles.setSmallCircleX(circles.getSmallCircle(), fulhackX);
+		circles.setSmallCircleY(circles.getSmallCircle(), fulhackY);
+		yPen =y + R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
+		xPen =x + R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
+		
+		
+		
 		t+= 0.001;
+		
 		
 		repaint();
 	}
 
 
+	
 
 	public void moveCircle(Ellipse2D.Double e, Graphics2D g, double newX, double newY){
 		
@@ -87,11 +117,11 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  Graphics2D g2d = (Graphics2D)g;
 		 
 		  g2d.draw(circles.getLargeCircle());
-		  g2d.draw(circles.getSmallCircle());
+		  // g2d.draw(circles.getSmallCircle());
 		  
 		  g.setColor(LINE_COLOR);
 		  moveCircle(circles.getSmallCircle(), g2d, circles.getSmallCircle().getX(), circles.getSmallCircle().getY());
-		  testLine.addPointLine((int)circles.getSmallCircle().getCenterX(), (int)circles.getSmallCircle().getCenterY());
+		  testLine.addPointLine((int)xPen, (int)yPen);
 		  testLine.draw(g);
 	         
 		

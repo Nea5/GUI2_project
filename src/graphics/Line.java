@@ -23,6 +23,8 @@ public class Line extends JPanel{
 		yList = new ArrayList<Integer>();
 	}
 	
+	
+	
 	public void addPointLine(int x, int y)
 	{
 		xList.add(x);
