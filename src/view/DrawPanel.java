@@ -51,7 +51,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 	Timer time = new Timer(1, (ActionListener) this);
 	private Line testLine= new Line(); 
 	private final Color LINE_COLOR = Color.RED;
-	private final Color POINT_COLOR = Color.GREEN;
+	private final Color POINT_COLOR = Color.CYAN;
 	
 	public DrawPanel(){
 		
@@ -132,7 +132,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  
 		  /*penPointer in the small ring*/
 		  g2d.setColor(POINT_COLOR);
-		  g2d.setStroke(new BasicStroke(5));
+		  g2d.setStroke(new BasicStroke(7,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND ));
 		  g2d.drawLine((int)xPen, (int)yPen,(int) xPen,(int) yPen);
 		  
 	      g2d.dispose();   
