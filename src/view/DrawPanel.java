@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -48,8 +49,9 @@ public class DrawPanel extends JPanel implements ActionListener{
 	static double fulhackY;	
 	
 	Timer time = new Timer(1, (ActionListener) this);
-	static Line testLine= new Line(); 
+	private Line testLine= new Line(); 
 	private final Color LINE_COLOR = Color.RED;
+	private final Color POINT_COLOR = Color.GREEN;
 	
 	public DrawPanel(){
 		
@@ -81,9 +83,11 @@ public class DrawPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-
+		//Hardcoded circle movement inside the large ellipse
 		fulhackY =y-r + R*((1-k)*Math.sin(t)-0*k*Math.sin(((1-k)/k)*t));
 		fulhackX =x-r + R*((1-k)*Math.cos(t)+0*k*Math.cos(((1-k)/k)*t));
+		
+		
 		circles.setSmallCircleX(circles.getSmallCircle(), fulhackX);
 		circles.setSmallCircleY(circles.getSmallCircle(), fulhackY);
 		yPen =y + R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
@@ -102,7 +106,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 
 	public void moveCircle(Ellipse2D.Double e, Graphics2D g, double newX, double newY){
 		
-		System.out.println(newX + ""+""+ newY);
+		//System.out.println(newX + ""+""+ newY);
 		circles.updateSmallCircle(e,newX, newY);
 		g.draw(e);
 		
@@ -117,13 +121,21 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  Graphics2D g2d = (Graphics2D)g;
 		 
 		  g2d.draw(circles.getLargeCircle());
-		  // g2d.draw(circles.getSmallCircle());
 		  
-		  g.setColor(LINE_COLOR);
 		  moveCircle(circles.getSmallCircle(), g2d, circles.getSmallCircle().getX(), circles.getSmallCircle().getY());
+		  
+		  g.setColor(LINE_COLOR); // red color on the line
+		  
+		  /*drawing line*/
 		  testLine.addPointLine((int)xPen, (int)yPen);
 		  testLine.draw(g);
-	         
+		  
+		  /*penPointer in the small ring*/
+		  g2d.setColor(POINT_COLOR);
+		  g2d.setStroke(new BasicStroke(5));
+		  g2d.drawLine((int)xPen, (int)yPen,(int) xPen,(int) yPen);
+		  
+	      g2d.dispose();   
 		
 	}
 	

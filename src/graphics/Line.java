@@ -1,6 +1,8 @@
 package graphics;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +18,19 @@ public class Line extends JPanel{
 	
 	private List<Integer> xList;
 	private List<Integer> yList;
+	private int singleX,singleY;
 	
 	public Line()
 	{
 		xList = new ArrayList<Integer>();
 		yList = new ArrayList<Integer>();
+	}
+	
+	public Line(int x, int y)
+	{
+		singleX = x;
+		singleY = y;
+		
 	}
 	
 	
@@ -38,5 +48,6 @@ public class Line extends JPanel{
 	               yList.get(i + 1));
 	      }
 	}
+	
 
 }
