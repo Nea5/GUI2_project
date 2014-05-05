@@ -1,45 +1,40 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 public class Circles extends JPanel{
 	
 	/**
-	 * 
+	 * change for commit
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	static Ellipse2D.Double largeCircle;
-	static Ellipse2D.Double smallCircle; 
+	private Ellipse2D.Double largeCircle;
+	private Ellipse2D.Double smallCircle; 
+	
+	/*
+	 * TODO remove this along with below methods?
+	 * 
 	private static double angle;
 	private static double step;
-
-	
-	
+	*/
 
 
-	
-	public Circles(double xLarge, double yLarge, double radiusLarge, double xSmall, double ySmall, double radiusSmall) {
-		 largeCircle = new Ellipse2D.Double(xLarge, yLarge, radiusLarge, radiusLarge);
-		 smallCircle = new Ellipse2D.Double(xSmall, ySmall, radiusSmall, radiusSmall);		
-		 setPreferredSize(new Dimension(1000, 1000));
-
+	public Circles(double R, double smallX, double smallY, double r){
+		largeCircle = new Ellipse2D.Double(0, 0, R, R);
+		smallCircle = new Ellipse2D.Double(smallX, smallY, r, r);
+		setPreferredSize(new Dimension(1000, 1000));
 	}
 	
+	
+		
 	public void updateSmallCircle(Ellipse2D.Double e, double newX, double newY){
 		e.x = newX;
 		e.y = newY;
 	}
-	
 	
 
 	public void setSmallCircleX(Ellipse2D.Double e,double newX){
@@ -55,22 +50,10 @@ public class Circles extends JPanel{
 		e.height = radius;
 	}
 	
-	public void paintComponent(Graphics g){
-		  /*super.paintComponent(g);
-		  Graphics2D g2d = (Graphics2D)g;
-		 
-		  g2d.draw(largeCircle);
-		  g2d.draw(smallCircle);
-		  
-		  g.setColor(LINE_COLOR);
-		  moveCircle(smallCircle, g2d, smallCircle.getX(), smallCircle.getY());
-		  testLine.addPointLine((int)smallCircle.getCenterX(), (int)smallCircle.getCenterY());
-		  testLine.draw(g);*/
-	         
-		  
-	  }
-
-
+	/*
+	 * TODO
+	 * What did we want with this, remove it?*/
+	/*
 	public static double getAngle() {
 		return angle;
 	}
@@ -86,6 +69,8 @@ public class Circles extends JPanel{
 	public static void setStep(double step) {
 		Circles.step = step;
 	}
+	*/
+	
 	public Ellipse2D.Double getSmallCircle()
 	{
 		return smallCircle;
