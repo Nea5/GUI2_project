@@ -1,15 +1,9 @@
 package graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 public class Circles extends JPanel{
 	
@@ -18,11 +12,15 @@ public class Circles extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static Ellipse2D.Double largeCircle;
-	public static Ellipse2D.Double smallCircle; 
+	private Ellipse2D.Double largeCircle;
+	private Ellipse2D.Double smallCircle; 
+	
+	/*
+	 * TODO remove this along with below methods?
+	 * 
 	private static double angle;
 	private static double step;
-	
+	*/
 
 
 	public Circles(double R, double smallX, double smallY, double r){
@@ -38,7 +36,6 @@ public class Circles extends JPanel{
 		e.y = newY;
 	}
 	
-	
 
 	public void setSmallCircleX(Ellipse2D.Double e,double newX){
 		 e.x = newX;
@@ -53,8 +50,10 @@ public class Circles extends JPanel{
 		e.height = radius;
 	}
 	
-	
-
+	/*
+	 * TODO
+	 * What did we want with this, remove it?*/
+	/*
 	public static double getAngle() {
 		return angle;
 	}
@@ -70,6 +69,8 @@ public class Circles extends JPanel{
 	public static void setStep(double step) {
 		Circles.step = step;
 	}
+	*/
+	
 	public Ellipse2D.Double getSmallCircle()
 	{
 		return smallCircle;
