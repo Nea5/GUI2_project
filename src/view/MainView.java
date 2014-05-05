@@ -1,30 +1,25 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 @SuppressWarnings("serial")
 public class MainView extends JFrame {
-
-
+JPanel content = new JPanel();
 
 	public MainView() {
-		this.add(new DrawPanel());
-		
+		content.setLayout(new BorderLayout());
+		//content.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		content.add(new DrawPanel(), BorderLayout.WEST);
+		//content.setBorder(BorderFactory.createLineBorder(Color.RED));
+		content.add(new controllPanel(), BorderLayout.EAST);
+		setContentPane(content);
+		pack();
 	}
-
-	
-	//private JPanel drawPanel = (JPanel) getContentPane();
-	//insert a drawed circle according to coordinates 
-	
-
-
-
-	public void initView()
-	{
-		//mainView.setBorder(new EmptyBorder(new Insets(400,400,300,400)));
-		this.pack();
-		
-		}
 
 }

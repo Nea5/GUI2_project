@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -37,7 +38,6 @@ public class DrawPanel extends JPanel implements ActionListener{
 	private final Color POINT_COLOR = Color.CYAN;
 	
 	public DrawPanel(){
-		
 		origoX = 0;
 		origoY = 0;
 		width = 300;
