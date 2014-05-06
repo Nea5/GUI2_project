@@ -22,9 +22,10 @@ Config test = new Config();
 		
 		//content.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		content.add(new DrawPanel(), BorderLayout.WEST);
-		content.add(test.test());
+		content.add(test.test(), BorderLayout.PAGE_START);
 		//content.setBorder(BorderFactory.createLineBorder(Color.RED));
-		//content.add(new controllPanel(), BorderLayout.EAST);
+		content.add(new controllPanel(), BorderLayout.EAST);
+		content.add(new Update(), BorderLayout.PAGE_END);
 		setContentPane(content);
 		pack();
 	}

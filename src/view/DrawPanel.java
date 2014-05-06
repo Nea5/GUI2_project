@@ -28,9 +28,9 @@ public class DrawPanel extends JPanel implements ActionListener{
 	public Circles circles;
 	
 	/*Circle basic variables*/
-	private double width, height,x,y,R,r,origoX,origoY;
+	private static double width, height,x,y,R,r,origoX,origoY;
 	
-	private double a,k,l,p,t,yPen,xPen,xc,yc,fulhackX,fulhackY;	
+	private static double a,k,l,p,t,yPen,xPen,xc,yc,fulhackX,fulhackY;	
 	
 	Timer time = new Timer(1, (ActionListener) this);
 	private Line testLine= new Line(); 
@@ -61,7 +61,12 @@ public class DrawPanel extends JPanel implements ActionListener{
 		time.start();
 		}
 
-
+		public DrawPanel(double smallRadius, double bigRadius, double penhole){
+			this.r = smallRadius;
+			R = bigRadius/2;
+			p = penhole;
+		}
+		
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -113,4 +118,15 @@ public class DrawPanel extends JPanel implements ActionListener{
 		
 	}
 	
+	public static void setSmallRadius(double smallRadius){
+		r = smallRadius;
+	}
+
+	public static void setBigRadius(double bigRadius){
+		R = bigRadius/2;
+	}
+	
+	public static void setPenhole(double penhole){
+		p = penhole;
+	}
 }

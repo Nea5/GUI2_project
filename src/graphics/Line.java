@@ -35,7 +35,7 @@ public class Line extends JPanel{
 	}
 	
 	public void draw(Graphics g) {
-		System.out.println("Arraysize: "+ xList.size());
+		//System.out.println("Arraysize: "+ xList.size());
 	      for (int i = 0; i < xList.size() - 1; ++i) {
 	         g.drawLine(xList.get(i), yList.get(i), xList.get(i + 1),
 	               yList.get(i + 1));
