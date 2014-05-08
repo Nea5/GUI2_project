@@ -12,15 +12,19 @@ public class controllPanel extends JPanel implements ActionListener{
 	JPanel controlPanel = new JPanel();
 	
 	private JButton showSmallRing;
+	private JButton showLargeRing;
 	
 	public controllPanel()
 	{
-		showSmallRing = new JButton("Show ring");
+		showSmallRing = new JButton("Show small ring");
 		showSmallRing.addActionListener(this);
 		showSmallRing.setActionCommand("disable");
+		showLargeRing = new JButton("Show large ring");
+		showLargeRing.addActionListener(this);
+		showLargeRing.setActionCommand("disable");
 		//showSmallRing.setBounds(10,20,10,20);
+		this.add(showLargeRing);
 		this.add(showSmallRing);
-		showSmallRing.setVisible(true);
 	}
 	
 	
