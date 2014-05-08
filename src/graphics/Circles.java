@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.geom.Ellipse2D;
 
@@ -15,6 +16,11 @@ public class Circles extends JPanel{
 	private Ellipse2D.Double largeCircle;
 	private Ellipse2D.Double smallCircle; 
 	
+	private Color SMALL_CIRCLE_COLOR = Color.BLACK;	
+	private Color LARGE_CIRCLE_COLOR = Color.BLACK;	
+	private float largeVisibility = (float) 1.0;
+	private float smallVisibility = (float) 1.0;
+	
 	/*
 	 * TODO remove this along with below methods?
 	 * 
@@ -29,7 +35,46 @@ public class Circles extends JPanel{
 		setPreferredSize(new Dimension(1000, 1000));
 	}
 	
+	public void setLargeVisibility(float nr)
+	{
+		largeVisibility = nr;
+	}
 	
+	public float getLargeVisibility()
+	{
+		return largeVisibility;
+	}
+	
+	
+	public void setSmallVisibility(float nr)
+	{
+		smallVisibility = nr;
+	}
+	
+	public float getSmallVisibility()
+	{
+		return smallVisibility;
+	}
+	
+	public void setLargeColor(Color newColor)
+	{
+		SMALL_CIRCLE_COLOR = newColor;
+	}
+	
+	public Color getLargeColor()
+	{
+		return SMALL_CIRCLE_COLOR;
+	}
+	
+	public void setSmallColor(Color newColor)
+	{
+		LARGE_CIRCLE_COLOR = newColor;
+	}
+	
+	public Color getSmallColor()
+	{
+		return LARGE_CIRCLE_COLOR;
+	}
 		
 	public void updateSmallCircle(Ellipse2D.Double e, double newX, double newY){
 		e.x = newX;
