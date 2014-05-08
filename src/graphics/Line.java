@@ -1,5 +1,6 @@
 package graphics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ public class Line extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Color LINE_COLOR = Color.RED;
 	
 	private List<Integer> xList;
 	private List<Integer> yList;
@@ -42,5 +45,13 @@ public class Line extends JPanel{
 	      }
 	}
 	
+	public void setColor(Color newColor)
+	{
+		LINE_COLOR = newColor;
+	}
+	public Color getColor()
+	{
+		return LINE_COLOR;
+	}
 
 }

@@ -39,9 +39,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 	private Line testLine= new Line(); 
 	private Color LINE_COLOR = Color.RED;
 	private final Color POINT_COLOR = Color.CYAN;
-	private final Color CIRCLE_COLOR = Color.BLACK;	
-	private float largeVisible = (float) 1.0;
-	private float smallVisible = (float) 1.0;
+
 	
 	
 	public DrawPanel(){
@@ -147,7 +145,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  //		  RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 		  
 		 
-		  g2d.setColor(CIRCLE_COLOR);
+		  g2d.setColor(circles.getLargeColor());
 		  g2d.draw(circles.getLargeCircle());
 		  
 		  g2d.setStroke(new BasicStroke(0,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND ));
@@ -157,13 +155,13 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				  RenderingHints.VALUE_ANTIALIAS_OFF);
 		  
-		  g2d.setColor(CIRCLE_COLOR);
+		  g2d.setColor(circles.getSmallColor());
 		  
-		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,largeVisible));
+		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getLargeVisibility()));
 		  
 		  moveCircle(circles.getSmallCircle(), g2d, circles.getSmallCircle().getX(), circles.getSmallCircle().getY());
 		  
-		  g.setColor(LINE_COLOR); // red color on the line
+		  g.setColor(testLine.getColor()); // red color on the line
 		  
 		  /*drawing line*/
 		  testLine.addPointLine((int)xPen, (int)yPen);
