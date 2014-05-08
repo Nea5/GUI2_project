@@ -31,10 +31,10 @@ public class Update extends JPanel implements ActionListener{
 		if("disable".equals(e.getActionCommand()))
 		{
 		updateButton.setEnabled(true);
-		System.out.println("update");
 		DrawPanel.setBigRadius(Config.getBigvalue());
 		DrawPanel.setSmallRadius(Config.getSmallvalue());
 		DrawPanel.setPenhole(Config.getPenhole());
+		
 		//System.out.println("new big radius: " + Config.getBigvalue());
 		//System.out.println("new penhole distance: " + Config.getPenhole());
 		//System.out.println("new small radius: " + Config.getSmallvalue());
