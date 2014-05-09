@@ -21,8 +21,8 @@ public class Line extends JPanel{
 	
 	private Color LINE_COLOR = Color.RED;
 	
-	private List<Integer> xList;
-	private List<Integer> yList;
+	public static List<Integer> xList;
+	public static List<Integer> yList;
 	public Line()
 	{
 		xList = new ArrayList<Integer>();
@@ -52,6 +52,11 @@ public class Line extends JPanel{
 	public Color getColor()
 	{
 		return LINE_COLOR;
+	}
+	
+	public static void emptyArray() {
+		xList.clear();
+		yList.clear();
 	}
 
 }
