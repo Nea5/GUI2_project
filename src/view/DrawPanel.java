@@ -80,8 +80,8 @@ public class DrawPanel extends JPanel implements ActionListener{
 		
 	
 
-			origoX = 0;
-			origoY = 0;
+			//origoX = 0;
+			//origoY = 0;
 			height = width;
 			R = width/2;
 			//r = 70;
