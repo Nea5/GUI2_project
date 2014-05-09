@@ -10,11 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Config extends JComponent{
+import control.TransparencyAction;
+
+public class Config extends JComponent {
 
 	JPanel config = new JPanel();
-	private JButton showSmallRing = new JButton("Show small ring");
-	private JButton showLargeRing = new JButton("Show large ring");
+	public static JButton showSmallRing = new JButton();
+	public static JButton showLargeRing = new JButton();
 	static JTextField smallRadius = new JTextField("",3);
 	static JTextField bigRadius = new JTextField("",3);
 	static JTextField penhole = new JTextField("",3);
@@ -22,17 +24,12 @@ public class Config extends JComponent{
 	JLabel enterBig = new JLabel("Enter big radius: ");
 	JLabel enterPenhole = new JLabel("Enter penhole distance: ");
 
-
+	TransparencyAction transAct = new control.TransparencyAction();
 	
 
 	
 	public Config(){
-		//showSmallRing = new JButton("Show small ring");
-		//showSmallRing.addActionListener((ActionListener) this);
-		//showSmallRing.setActionCommand("disable");
-		//showLargeRing = new JButton("Show large ring");
-		//showLargeRing.addActionListener((ActionListener) this);
-		//showLargeRing.setActionCommand("disable");
+		
 	}
 	
 	public JComponent addParam(){
@@ -45,6 +42,15 @@ public class Config extends JComponent{
 		config.add(penhole);		
 		config.add(showLargeRing);
 		config.add(showSmallRing);
+		
+		showLargeRing.setAction(transAct);
+		showLargeRing.setActionCommand("Large");
+		showLargeRing.setText("Hide large circle");
+		
+		
+		showSmallRing.setAction(transAct);
+		showSmallRing.setText("Hide small circle");
+
 		
 		return config;
 	}
