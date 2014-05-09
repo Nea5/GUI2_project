@@ -10,12 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import control.TransparencyAction;
+
 
 public class Config extends JComponent implements ActionListener{
 
 	JPanel config = new JPanel();
-	private JButton showSmallRing = new JButton("Show small ring");
-	private JButton showLargeRing = new JButton("Show large ring");
+	public static JButton showSmallRing = new JButton("Show small ring");
+	public static JButton showLargeRing = new JButton("Show large ring");
 	private JButton updateButton = new JButton("Update");
 	static JTextField smallRadius = new JTextField("",3);
 	static JTextField bigRadius = new JTextField("",3);
@@ -23,10 +25,11 @@ public class Config extends JComponent implements ActionListener{
 	JLabel enterSmall = new JLabel("Enter small radius: ");
 	JLabel enterBig = new JLabel("Enter big radius: ");
 	JLabel enterPenhole = new JLabel("Enter penhole distance: ");
+	TransparencyAction transAct = new control.TransparencyAction();
 	
 
 	public Config(){}
-
+	
 	
 	public JComponent addParam(){
 		
@@ -45,6 +48,15 @@ public class Config extends JComponent implements ActionListener{
 		//showSmallRing.setBounds(10,20,10,20);
 		//this.add(updateButton);
 		//updateButton.setVisible(true);
+		
+		showLargeRing.setAction(transAct);
+		showLargeRing.setActionCommand("Large");
+		showLargeRing.setText("Hide large circle");
+		
+		
+		showSmallRing.setAction(transAct);
+		showSmallRing.setText("Hide small circle");
+
 		
 		return config;
 	}

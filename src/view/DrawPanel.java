@@ -104,7 +104,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 			
 			
 			LINE_COLOR = Color.BLUE;
-			System.out.println("t är nu" + t );
+			//System.out.println("t är nu" + t );
 		
 		circles.setSmallCircleX(circles.getSmallCircle(), fulhackX);
 		circles.setSmallCircleY(circles.getSmallCircle(), fulhackY);
@@ -116,12 +116,16 @@ public class DrawPanel extends JPanel implements ActionListener{
 		repaint();
 	}	
 
+	
+	
 	public void moveCircle(Ellipse2D.Double e, Graphics2D g, double newX, double newY){
 		
 		circles.updateSmallCircle(e,newX, newY);
 		g.draw(e);
 		
 	}
+	
+
 
 	  
 	public void paintComponent(Graphics g)
@@ -142,24 +146,28 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  /*Bicubic antialiasing*/
 		  //g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
 		  //		  RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-		  
-		 
+
+		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getLargeVisibility()));
 		  g2d.setColor(circles.getLargeColor());
 		  g2d.draw(circles.getLargeCircle());
-		  
+
 		  g2d.setStroke(new BasicStroke(0,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND ));
-			
+		  
 		  
 		  /*Putting Antialiasing "OFF"*/
 		  g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				  RenderingHints.VALUE_ANTIALIAS_OFF);
 		  
+		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getSmallVisibility()));
+
+		  
 		  g2d.setColor(circles.getSmallColor());
 		  
-		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getLargeVisibility()));
+		  //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getLargeVisibility()));
 		  
 		  moveCircle(circles.getSmallCircle(), g2d, circles.getSmallCircle().getX(), circles.getSmallCircle().getY());
-		  
+
+		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,(float) 1.0));
 		  g.setColor(testLine.getColor()); // red color on the line
 		  
 		  /*drawing line*/

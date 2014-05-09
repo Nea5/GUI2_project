@@ -18,8 +18,8 @@ public class Circles extends JPanel{
 	
 	private Color SMALL_CIRCLE_COLOR = Color.BLACK;	
 	private Color LARGE_CIRCLE_COLOR = Color.BLACK;	
-	private float largeVisibility = (float) 1.0;
-	private float smallVisibility = (float) 1.0;
+	private static float largeVisibility = (float) 1.0;
+	private static float smallVisibility = (float) 1.0;
 	
 	/*
 	 * TODO remove this along with below methods?
@@ -35,23 +35,23 @@ public class Circles extends JPanel{
 		setPreferredSize(new Dimension(1000, 1000));
 	}
 	
-	public void setLargeVisibility(float nr)
+	public static void setLargeVisibility(float nr)
 	{
 		largeVisibility = nr;
 	}
 	
-	public float getLargeVisibility()
+	public static float getLargeVisibility()
 	{
 		return largeVisibility;
 	}
 	
 	
-	public void setSmallVisibility(float nr)
+	public static void setSmallVisibility(float nr)
 	{
 		smallVisibility = nr;
 	}
 	
-	public float getSmallVisibility()
+	public static float getSmallVisibility()
 	{
 		return smallVisibility;
 	}
