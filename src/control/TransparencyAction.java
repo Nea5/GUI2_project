@@ -12,6 +12,11 @@ import view.Config;
 
 public class TransparencyAction extends AbstractAction {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("Large".equals(((JButton) e.getSource()).getActionCommand())) {

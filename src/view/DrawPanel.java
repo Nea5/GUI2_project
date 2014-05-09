@@ -37,7 +37,6 @@ public class DrawPanel extends JPanel implements ActionListener{
 	
 	Timer time = new Timer(1, (ActionListener) this);
 	private Line testLine= new Line(); 
-	private Color LINE_COLOR = Color.RED;
 	private final Color POINT_COLOR = Color.CYAN;
 
 	
@@ -61,7 +60,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 		yPen = R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
 		xPen = R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
 
-		this.add(circles = new Circles(R*2, xc, yc, r*2));
+		this.add(circles = new Circles(R*2, xc, yc, r*2, origoX, origoY));
 		this.add(new Line());
 		time.start();
 		}
@@ -83,7 +82,6 @@ public class DrawPanel extends JPanel implements ActionListener{
 
 			origoX = 0;
 			origoY = 0;
-			//width = 300;
 			height = width;
 			R = width/2;
 			//r = 70;
@@ -99,11 +97,11 @@ public class DrawPanel extends JPanel implements ActionListener{
 			yPen = R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
 			xPen = R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
 
-			this.add(circles = new Circles(R*2, xc, yc, r*2));
+			this.add(circles = new Circles(R*2, xc, yc, r*2, origoX, origoY));
 			
 			
 			
-			LINE_COLOR = Color.BLUE;
+			//LINE_COLOR = Color.BLUE;
 			//System.out.println("t är nu" + t );
 		
 		circles.setSmallCircleX(circles.getSmallCircle(), fulhackX);
@@ -194,6 +192,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 		if(bigRadius <= 0.0){}
 		else{	
 		width = 2*bigRadius;
+		width = bigRadius*2;
 		}
 	}
 	
@@ -202,5 +201,13 @@ public class DrawPanel extends JPanel implements ActionListener{
 		else{
 		p = penhole;
 		}
+	}
+	
+	public static void setNewX(double newX){
+		origoX = newX;
+	}
+	
+	public static void setNewY(double newY){
+		origoY = newY;
 	}
 }

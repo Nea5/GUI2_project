@@ -21,16 +21,10 @@ public class Circles extends JPanel{
 	private static float largeVisibility = (float) 1.0;
 	private static float smallVisibility = (float) 1.0;
 	
-	/*
-	 * TODO remove this along with below methods?
-	 * 
-	private static double angle;
-	private static double step;
-	*/
 
 
-	public Circles(double R, double smallX, double smallY, double r){
-		largeCircle = new Ellipse2D.Double(0, 0, R, R);
+	public Circles(double R, double smallX, double smallY, double r, double largeX, double largeY){
+		largeCircle = new Ellipse2D.Double(largeX, largeY, R, R);
 		smallCircle = new Ellipse2D.Double(smallX, smallY, r, r);
 		setPreferredSize(new Dimension(1000, 1000));
 	}
@@ -94,27 +88,7 @@ public class Circles extends JPanel{
 		e.width = radius;
 		e.height = radius;
 	}
-	
-	/*
-	 * TODO
-	 * What did we want with this, remove it?*/
-	/*
-	public static double getAngle() {
-		return angle;
-	}
 
-	public static void setAngle(double angle) {
-		Circles.angle = angle;
-	}
-
-	public static double getStep() {
-		return step;
-	}
-
-	public static void setStep(double step) {
-		Circles.step = step;
-	}
-	*/
 	
 	public Ellipse2D.Double getSmallCircle()
 	{
