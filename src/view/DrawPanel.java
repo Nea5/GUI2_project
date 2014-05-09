@@ -79,18 +79,18 @@ public class DrawPanel extends JPanel implements ActionListener{
 		fulhackY =y-r + R*((1-k)*Math.sin(t)-0*k*Math.sin(((1-k)/k)*t));
 		fulhackX =x-r + R*((1-k)*Math.cos(t)+0*k*Math.cos(((1-k)/k)*t));
 		
-		if(t>25){
+	
 
 			origoX = 0;
 			origoY = 0;
 			width = 300;
 			height = width;
 			R = width/2;
-			r = 70;
+			//r = 70;
 			x = origoX + width/2;
 			y = origoY + width /2;
 			
-			p = 50;
+			//p = 50;
 			//t = 0;
 			xc = x + (R - r) * Math.cos(t);
 			yc = y + (R - r) * Math.sin(t);
@@ -105,7 +105,6 @@ public class DrawPanel extends JPanel implements ActionListener{
 			
 			LINE_COLOR = Color.BLUE;
 			System.out.println("t är nu" + t );
-		}
 		
 		circles.setSmallCircleX(circles.getSmallCircle(), fulhackX);
 		circles.setSmallCircleY(circles.getSmallCircle(), fulhackY);

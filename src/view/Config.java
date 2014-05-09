@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -10,23 +13,38 @@ import javax.swing.JTextField;
 public class Config extends JComponent{
 
 	JPanel config = new JPanel();
+	private JButton showSmallRing = new JButton("Show small ring");
+	private JButton showLargeRing = new JButton("Show large ring");
 	static JTextField smallRadius = new JTextField("",3);
 	static JTextField bigRadius = new JTextField("",3);
 	static JTextField penhole = new JTextField("",3);
 	JLabel enterSmall = new JLabel("Enter small radius: ");
 	JLabel enterBig = new JLabel("Enter big radius: ");
 	JLabel enterPenhole = new JLabel("Enter penhole distance: ");
+
+
+	
+
 	
 	public Config(){
-		
+		//showSmallRing = new JButton("Show small ring");
+		//showSmallRing.addActionListener((ActionListener) this);
+		//showSmallRing.setActionCommand("disable");
+		//showLargeRing = new JButton("Show large ring");
+		//showLargeRing.addActionListener((ActionListener) this);
+		//showLargeRing.setActionCommand("disable");
 	}
+	
 	public JComponent addParam(){
+		
 		config.add(enterSmall);
 		config.add(smallRadius);
 		config.add(enterBig);
 		config.add(bigRadius);
 		config.add(enterPenhole);
 		config.add(penhole);		
+		config.add(showLargeRing);
+		config.add(showSmallRing);
 		
 		return config;
 	}
