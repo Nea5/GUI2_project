@@ -19,7 +19,7 @@ Config config = new Config();
 		content.add(new DrawPanel(), BorderLayout.WEST);
 		content.add(config.addParam(), BorderLayout.PAGE_START);
 		//content.setBorder(BorderFactory.createLineBorder(Color.RED));
-		content.add(new Update(), BorderLayout.PAGE_END);
+		//content.add(new Update(), BorderLayout.PAGE_START);
 		
 		setContentPane(content);
 		pack();

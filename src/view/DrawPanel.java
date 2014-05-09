@@ -83,7 +83,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 
 			origoX = 0;
 			origoY = 0;
-			width = 300;
+			//width = 300;
 			height = width;
 			R = width/2;
 			//r = 70;
@@ -185,7 +185,7 @@ public class DrawPanel extends JPanel implements ActionListener{
 	public static void setBigRadius(double bigRadius){
 		if(bigRadius <= 0.0){}
 		else{	
-		R = bigRadius/2;
+		width = 2*bigRadius;
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -10,34 +11,22 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Config extends JComponent{
+public class Config extends JComponent implements ActionListener{
 
 	JPanel config = new JPanel();
 	private JButton showSmallRing = new JButton("Show small ring");
 	private JButton showLargeRing = new JButton("Show large ring");
+	private JButton updateButton = new JButton("Update");
 	static JTextField smallRadius = new JTextField("",3);
 	static JTextField bigRadius = new JTextField("",3);
 	static JTextField penhole = new JTextField("",3);
 	JLabel enterSmall = new JLabel("Enter small radius: ");
 	JLabel enterBig = new JLabel("Enter big radius: ");
 	JLabel enterPenhole = new JLabel("Enter penhole distance: ");
-
-
 	
 
-	
-<<<<<<< HEAD
 	public Config(){}
-=======
-	public Config(){
-		//showSmallRing = new JButton("Show small ring");
-		//showSmallRing.addActionListener((ActionListener) this);
-		//showSmallRing.setActionCommand("disable");
-		//showLargeRing = new JButton("Show large ring");
-		//showLargeRing.addActionListener((ActionListener) this);
-		//showLargeRing.setActionCommand("disable");
-	}
->>>>>>> 1481369f8c7b7594e368daa316da16d92da5063e
+
 	
 	public JComponent addParam(){
 		
@@ -49,6 +38,13 @@ public class Config extends JComponent{
 		config.add(penhole);		
 		config.add(showLargeRing);
 		config.add(showSmallRing);
+		config.add(updateButton);
+		
+		updateButton.addActionListener(this);
+		updateButton.setActionCommand("disable");
+		//showSmallRing.setBounds(10,20,10,20);
+		//this.add(updateButton);
+		//updateButton.setVisible(true);
 		
 		return config;
 	}
@@ -95,6 +91,25 @@ public class Config extends JComponent{
 		else{
 			double updatedPenhole = Double.parseDouble(penhole.getText());
 			return updatedPenhole;
+		}
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if("disable".equals(e.getActionCommand()))
+		{
+		updateButton.setEnabled(true);
+		DrawPanel.setBigRadius(Config.getBigvalue());
+		DrawPanel.setSmallRadius(Config.getSmallvalue());
+		DrawPanel.setPenhole(Config.getPenhole());
+		
+		//System.out.println("new big radius: " + Config.getBigvalue());
+		//System.out.println("new penhole distance: " + Config.getPenhole());
+		//System.out.println("new small radius: " + Config.getSmallvalue());
+		}else
+		{
+			
+			updateButton.setEnabled(true);
 		}
 	}
 }
