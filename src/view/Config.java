@@ -17,9 +17,8 @@ public class Config extends JComponent{
 	JLabel enterBig = new JLabel("Enter big radius: ");
 	JLabel enterPenhole = new JLabel("Enter penhole distance: ");
 	
-	public Config(){
-		
-	}
+	public Config(){}
+	
 	public JComponent addParam(){
 		config.add(enterSmall);
 		config.add(smallRadius);
