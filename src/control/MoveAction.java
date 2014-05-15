@@ -16,11 +16,18 @@ public class MoveAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		double tempX = Double.parseDouble(Config.newX.getText());
-		double tempY = Double.parseDouble(Config.newY.getText());
 		
-		DrawPanel.setNewX(tempX);
-		DrawPanel.setNewY(tempY);
+		try{
+			double tempX = Double.parseDouble(Config.newX.getText());
+			double tempY = Double.parseDouble(Config.newY.getText());
+		
+			DrawPanel.setNewX(tempX);
+			DrawPanel.setNewY(tempY);	
+			}
+		catch(NumberFormatException n){
+			System.out.println("Not a number");
+		}
+		
 	}
 
 }
