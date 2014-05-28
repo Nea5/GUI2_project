@@ -8,7 +8,12 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -19,7 +24,7 @@ import graphics.Line;
 
 
 
-public class DrawPanel extends JPanel implements ActionListener{
+public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 	
 	/**
 	 * 
@@ -34,12 +39,17 @@ public class DrawPanel extends JPanel implements ActionListener{
 	
 	private static double a,k,l,p,t,yPen,xPen,xc,yc,fulhackX,fulhackY;	
 	
+	private static int mouseX,mouseY;
+	
+	private static int lineIndex = 0;
+	private static List<Line> lines = new ArrayList<Line>();
+	
+	private static boolean circleMoved = false;
 	
 	Timer time = new Timer(1, (ActionListener) this);
 	private Line testLine= new Line(); 
 	private final Color POINT_COLOR = Color.CYAN;
 
-	
 	
 	public DrawPanel(){
 		origoX = 0;
@@ -61,15 +71,16 @@ public class DrawPanel extends JPanel implements ActionListener{
 		xPen = R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
 
 		this.add(circles = new Circles(R*2, xc, yc, r*2, origoX, origoY));
-		this.add(new Line());
-		time.start();
+		lines.add(new Line());
+		addMouseListener(this);
+		//time.start();
 		}
 
-		public DrawPanel(double smallRadius, double bigRadius, double penhole){
-			r = smallRadius;
-			R = bigRadius/2;
-			p = penhole;
-		}
+	public DrawPanel(double smallRadius, double bigRadius, double penhole){
+		r = smallRadius;
+		R = bigRadius/2;
+		p = penhole;
+	}
 		
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -102,19 +113,18 @@ public class DrawPanel extends JPanel implements ActionListener{
 			
 			
 			//LINE_COLOR = Color.BLUE;
-			//System.out.println("t är nu" + t );
+			//System.out.println("t ar nu" + t );
 		
 		circles.setSmallCircleX(circles.getSmallCircle(), fulhackX);
 		circles.setSmallCircleY(circles.getSmallCircle(), fulhackY);
 		yPen =y + R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
 		xPen =x + R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
 		
-		t+= 0.01;
+		t+= 0.1;
 		
 		repaint();
 	}	
 
-	
 	
 	public void moveCircle(Ellipse2D.Double e, Graphics2D g, double newX, double newY){
 		
@@ -123,8 +133,6 @@ public class DrawPanel extends JPanel implements ActionListener{
 		
 	}
 	
-
-
 	  
 	public void paintComponent(Graphics g)
 	{
@@ -153,8 +161,8 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  
 		  
 		  /*Putting Antialiasing "OFF"*/
-		  g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				  RenderingHints.VALUE_ANTIALIAS_OFF);
+		  //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+			//	  RenderingHints.VALUE_ANTIALIAS_OFF);
 		  
 		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getSmallVisibility()));
 
@@ -165,12 +173,13 @@ public class DrawPanel extends JPanel implements ActionListener{
 		  
 		  moveCircle(circles.getSmallCircle(), g2d, circles.getSmallCircle().getX(), circles.getSmallCircle().getY());
 
-		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,(float) 1.0));
+		  //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,(float) 1.0));
 		  g.setColor(testLine.getColor()); // red color on the line
 		  
 		  /*drawing line*/
-		  testLine.addPointLine((int)xPen, (int)yPen);
-		  testLine.draw(g);
+		  
+		  lines.get(lineIndex).addPointLine((int)xPen, (int)yPen);
+		  lines.get(lineIndex).draw(g);
 		  
 		  /*penPointer in the small ring*/
 		  g2d.setColor(POINT_COLOR);
@@ -210,4 +219,69 @@ public class DrawPanel extends JPanel implements ActionListener{
 	public static void setNewY(double newY){
 		origoY = newY;
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		time.stop();
+		System.out.println("Released x: "+ e.getX() + " y: " + e.getY());
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		time.start();
+		setMouseX(e.getX());
+		setMouseY(e.getY());
+		System.out.println("Pressed x: "+ e.getX() + " y: " + e.getY());
+		
+	}
+	
+	public void setMouseX(int x)
+	{
+		mouseX = x;
+	}
+	
+	public void setMouseY(int y)
+	{
+		mouseY = y;
+	}
+	
+	public static int getMouseX()
+	{
+		return mouseX;
+	}
+	
+	public static int getMouseY()
+	{
+		return mouseY;
+	}
+	
+	public static void setNewLine(int x, int y)
+	{
+		lines.add(new Line(x,y));
+		lineIndex++;
+	}
+	
 }

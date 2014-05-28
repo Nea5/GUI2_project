@@ -4,11 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+
 import control.CleanAction;
 import control.MoveAction;
 import control.TransparencyAction;
@@ -25,7 +28,7 @@ public class Config extends JComponent implements ActionListener{
 	public static JButton showLargeRing = new JButton("Show large ring");
 	private JButton updateButton = new JButton("Update");
 	public static JButton cleanButton = new JButton();
-	public static JButton changeLocationButton = new JButton();
+	public static JToggleButton changeLocationButton = new JToggleButton();
 	static JTextField smallRadius = new JTextField("",3);
 	static JTextField bigRadius = new JTextField("",3);
 	static JTextField penhole = new JTextField("",3);
@@ -140,7 +143,7 @@ public class Config extends JComponent implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
 		if("disable".equals(e.getActionCommand()))
 		{
 		updateButton.setEnabled(true);

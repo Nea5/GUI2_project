@@ -17,6 +17,7 @@ public class MoveAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		
 		try{
 			double tempX = Double.parseDouble(Config.newX.getText());
 			double tempY = Double.parseDouble(Config.newY.getText());
@@ -25,7 +26,12 @@ public class MoveAction extends AbstractAction {
 			DrawPanel.setNewY(tempY);	
 			}
 		catch(NumberFormatException n){
-			System.out.println("Not a number");
+			System.out.println("No number! Move manually");
+			double tempX = DrawPanel.getMouseX();
+			double tempY = DrawPanel.getMouseY();
+			DrawPanel.setNewX(tempX);
+			DrawPanel.setNewY(tempY);	
+			DrawPanel.setNewLine((int)tempX, (int)tempY);
 		}
 		
 	}

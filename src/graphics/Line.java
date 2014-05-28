@@ -29,6 +29,15 @@ public class Line extends JPanel{
 		yList = new ArrayList<Integer>();
 	}
 
+	public Line(int x, int y)
+	{
+		
+		xList = new ArrayList<Integer>();
+		yList = new ArrayList<Integer>();
+		xList.add(x);
+		yList.add(y);
+		
+	}
 	
 	public void addPointLine(int x, int y)
 	{
@@ -52,6 +61,11 @@ public class Line extends JPanel{
 	public Color getColor()
 	{
 		return LINE_COLOR;
+	}
+	
+	public Line getLine()
+	{
+		return this;
 	}
 	
 	public static void emptyArray() {
