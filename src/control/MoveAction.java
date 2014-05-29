@@ -31,7 +31,7 @@ public class MoveAction extends AbstractAction {
 			double tempY = DrawPanel.getMouseY();
 			DrawPanel.setNewX(tempX);
 			DrawPanel.setNewY(tempY);	
-			DrawPanel.setNewLine((int)tempX, (int)tempY);
+			
 		}
 		
 	}

@@ -41,15 +41,9 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 	
 	private static int mouseX,mouseY;
 	
-	private static int lineIndex = 0;
-	private static List<Line> lines = new ArrayList<Line>();
-	
-	private static boolean circleMoved = false;
-	
 	Timer time = new Timer(1, (ActionListener) this);
 	private Line testLine= new Line(); 
 	private final Color POINT_COLOR = Color.CYAN;
-
 	
 	public DrawPanel(){
 		origoX = 0;
@@ -71,7 +65,7 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 		xPen = R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
 
 		this.add(circles = new Circles(R*2, xc, yc, r*2, origoX, origoY));
-		lines.add(new Line());
+		this.add(new Line());
 		addMouseListener(this);
 		//time.start();
 		}
@@ -120,7 +114,9 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 		yPen =y + R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
 		xPen =x + R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
 		
-		t+= 0.1;
+		
+		
+		t+= 0.01;
 		
 		repaint();
 	}	
@@ -166,7 +162,6 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 		  
 		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getSmallVisibility()));
 
-		  
 		  g2d.setColor(circles.getSmallColor());
 		  
 		  //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,circles.getLargeVisibility()));
@@ -177,9 +172,9 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 		  g.setColor(testLine.getColor()); // red color on the line
 		  
 		  /*drawing line*/
-		  
-		  lines.get(lineIndex).addPointLine((int)xPen, (int)yPen);
-		  lines.get(lineIndex).draw(g);
+		  testLine.setRandomColor();
+		  testLine.draw(g2d);
+		  testLine.addPointLine((int)xPen, (int)yPen);
 		  
 		  /*penPointer in the small ring*/
 		  g2d.setColor(POINT_COLOR);
@@ -278,10 +273,5 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 		return mouseY;
 	}
 	
-	public static void setNewLine(int x, int y)
-	{
-		lines.add(new Line(x,y));
-		lineIndex++;
-	}
 	
 }
