@@ -76,6 +76,7 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener, 
 		this.add(new Line());
 		addMouseListener(this);
 		StateEdit stateEdit = new StateEdit(this);
+		
 		//time.start();
 		}
 
