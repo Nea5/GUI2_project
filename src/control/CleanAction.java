@@ -15,7 +15,7 @@ public class CleanAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Line.emptyArray();
+		Line.eraseLine();
 	}
 
 }

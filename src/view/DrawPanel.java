@@ -13,18 +13,24 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.StateEdit;
+import javax.swing.undo.StateEditable;
+import javax.swing.undo.UndoManager;
 
 import graphics.Circles;
 import graphics.Line;
 
 
 
-public class DrawPanel extends JPanel implements ActionListener, MouseListener{
+public class DrawPanel extends JPanel implements ActionListener, MouseListener, UndoableEditListener,StateEditable{
 	
 	/**
 	 * 
@@ -42,7 +48,9 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 	private static int mouseX,mouseY;
 	
 	Timer time = new Timer(1, (ActionListener) this);
-	private Line testLine= new Line(); 
+	
+	UndoManager manager = new UndoManager();
+	private static Line testLine= new Line(); 
 	private final Color POINT_COLOR = Color.CYAN;
 	
 	public DrawPanel(){
@@ -67,6 +75,7 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 		this.add(circles = new Circles(R*2, xc, yc, r*2, origoX, origoY));
 		this.add(new Line());
 		addMouseListener(this);
+		StateEdit stateEdit = new StateEdit(this);
 		//time.start();
 		}
 
@@ -103,12 +112,7 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 			xPen = R*((1-k)*Math.cos(t)+l*k*Math.cos(((1-k)/k)*t));
 
 			this.add(circles = new Circles(R*2, xc, yc, r*2, origoX, origoY));
-			
-			
-			
-			//LINE_COLOR = Color.BLUE;
-			//System.out.println("t ar nu" + t );
-		
+	
 		circles.setSmallCircleX(circles.getSmallCircle(), fulhackX);
 		circles.setSmallCircleY(circles.getSmallCircle(), fulhackY);
 		yPen =y + R*((1-k)*Math.sin(t)-l*k*Math.sin(((1-k)/k)*t));
@@ -223,8 +227,8 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 		time.stop();
+		testLine.SizeOfcurrentXList();
 		System.out.println("Released x: "+ e.getX() + " y: " + e.getY());
 		
 	}
@@ -245,7 +249,8 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		testLine.undoLine(); // before timer started setting state for previous line available in separate arrayLine
+		testLine.SizeOfoldXList();
 		time.start();
 		setMouseX(e.getX());
 		setMouseY(e.getY());
@@ -271,6 +276,24 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener{
 	public static int getMouseY()
 	{
 		return mouseY;
+	}
+
+	@Override
+	public void undoableEditHappened(UndoableEditEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void storeState(Hashtable<Object, Object> state) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void restoreState(Hashtable<?, ?> state) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

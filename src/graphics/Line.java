@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -20,12 +21,17 @@ public class Line extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
-	
 	private Color LINE_COLOR = Color.RED;
 	
-	public static List<Integer> xList;
-	public static List<Integer> yList;
+	private static List<Integer> xList;
+	private static List<Integer> yList;
+	
+	private static List<Integer> oldXList;
+	private static List<Integer> oldYList;
+	
+	private static List<Integer> redoXList;
+	private static List<Integer> redoYList;
+	
 	private BufferedImage canvas = new BufferedImage(3,3, BufferedImage.TYPE_INT_ARGB);
 	
 	public Line()
@@ -45,11 +51,11 @@ public class Line extends JPanel{
 	}
 	
 	
-	
 	public void addPointLine(int x, int y)
 	{
 		xList.add(x);
 		yList.add(y);
+		redoLine();
 		
 	}
 	
@@ -77,14 +83,53 @@ public class Line extends JPanel{
 		return LINE_COLOR;
 	}
 	
-	public Line getLine()
-	{
-		return this;
-	}
-	
-	public static void emptyArray() {
+
+	public static void eraseLine() {
 		xList.clear();
 		yList.clear();
 	}
+	
+	public static void setUndo()
+	{
+		xList = oldXList;
+		yList = oldYList;
+		
+	}
+	
+	public static void setRedo()
+	{
+		xList = redoXList;
+		yList = redoYList;
+		
+	}
+	
+	public void undoLine()
+	{
+		oldXList = new ArrayList<Integer>(xList);
+		oldYList = new ArrayList<Integer>(yList);
+		System.out.println ("oldXList: " + oldXList.toString());
+		//Collections.copy(oldXList,xList);
+		//Collections.copy(oldYList,yList);
+	}
+	
+	public void redoLine()
+	{
+		//Collections.copy(redoXList,xList);
+		//Collections.copy(redoYList,yList);
+		redoXList = new ArrayList<Integer>(xList);
+		redoYList = new ArrayList<Integer>(yList);
 
+	}
+	
+	public void SizeOfoldXList()
+	{
+		System.out.println("Mouse pressed, arraysize: "+ oldXList.size());
+	}
+	
+	public void SizeOfcurrentXList()
+	{
+		System.out.println("Mouse released, arraysize: "+ redoXList.size());
+	}
+
+	
 }

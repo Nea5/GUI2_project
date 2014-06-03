@@ -15,6 +15,7 @@ import javax.swing.JToggleButton;
 import control.CleanAction;
 import control.MoveAction;
 import control.TransparencyAction;
+import control.UndoAction;
 
 
 public class Config extends JComponent implements ActionListener{
@@ -29,6 +30,8 @@ public class Config extends JComponent implements ActionListener{
 	private JButton updateButton = new JButton("Update");
 	public static JButton cleanButton = new JButton();
 	public static JToggleButton changeLocationButton = new JToggleButton();
+	public static JButton redoLine = new JButton("redo");
+	public static JButton undoLine = new JButton("undo");
 	static JTextField smallRadius = new JTextField("",3);
 	static JTextField bigRadius = new JTextField("",3);
 	static JTextField penhole = new JTextField("",3);
@@ -42,6 +45,7 @@ public class Config extends JComponent implements ActionListener{
 	JLabel enterNewY = new JLabel("Enter new y coordinate: ");
 	CleanAction cleanAct = new control.CleanAction();
 	MoveAction moveAct = new control.MoveAction();
+	UndoAction undoAct = new control.UndoAction();
 	
 	public Config(){
 		config.setPreferredSize(new Dimension(100, 100));
@@ -61,7 +65,13 @@ public class Config extends JComponent implements ActionListener{
 		config.add(updateButton);
 		
 		updateButton.addActionListener(this);
-		updateButton.setActionCommand("disable");
+		updateButton.setActionCommand("update");
+		
+		redoLine.addActionListener(this);
+		redoLine.setActionCommand("redo");
+		
+		undoLine.addActionListener(this);
+		undoLine.setActionCommand("undo");
 		//showSmallRing.setBounds(10,20,10,20);
 		//this.add(updateButton);
 		//updateButton.setVisible(true);
@@ -72,6 +82,8 @@ public class Config extends JComponent implements ActionListener{
 		config.add(enterNewY);
 		config.add(newY);
 		config.add(changeLocationButton);
+		config.add(redoLine);
+		config.add(undoLine);
 		showLargeRing.setAction(transAct);
 		showLargeRing.setActionCommand("Large");
 		showLargeRing.setText("Hide large circle");
@@ -81,7 +93,10 @@ public class Config extends JComponent implements ActionListener{
 		cleanButton.setText("Erase line");
 		changeLocationButton.setAction(moveAct);
 		changeLocationButton.setText("Change location for spirograph");
-
+		undoLine.setAction(undoAct);
+		undoLine.setText("undo");
+		
+		
 		return config;
 	}
 
@@ -104,7 +119,6 @@ public class Config extends JComponent implements ActionListener{
 			
 		}
 		
-	
 	public static Double getBigvalue(){
 		
 		try{
@@ -122,8 +136,6 @@ public class Config extends JComponent implements ActionListener{
 		}
 	}
 		
-		
-	
 	public static Double getPenhole(){
 		
 		try{
@@ -144,7 +156,7 @@ public class Config extends JComponent implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if("disable".equals(e.getActionCommand()))
+		if("update".equals(e.getActionCommand()))
 		{
 		updateButton.setEnabled(true);
 		DrawPanel.setBigRadius(Config.getBigvalue());
