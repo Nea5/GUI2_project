@@ -77,7 +77,7 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener, 
 		addMouseListener(this);
 		StateEdit stateEdit = new StateEdit(this);
 		
-		//time.start();
+		time.start();
 		}
 
 	public DrawPanel(double smallRadius, double bigRadius, double penhole){
@@ -196,14 +196,23 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener, 
 		r = smallRadius;
 		}
 	}
+	
+	
+	public static double getSmallRadius(){
+		return r;
+	}
 
 	public static void setBigRadius(double bigRadius){
 		if(bigRadius <= 0.0){}
 		else{	
 		width = 2*bigRadius;
-		width = bigRadius*2;
 		}
 	}
+	
+	public static double getBigRadius(){
+		return width/2;
+	}
+	
 	
 	public static void setPenhole(double penhole){
 		if(penhole <= 0.0){}
@@ -212,14 +221,30 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener, 
 		}
 	}
 	
+	
+	public static double getP(){
+		return p;
+	}
+	
+	
 	public static void setNewX(double newX){
 		origoX = newX;
 	}
 	
+	public static double getLocX(){
+		return origoX;
+	}
+		
 	public static void setNewY(double newY){
 		origoY = newY;
 	}
-
+	
+	
+	public static double getLocY(){
+		return origoY;
+	}
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -228,7 +253,7 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener, 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		time.stop();
+		//time.stop();
 		testLine.SizeOfcurrentXList();
 		System.out.println("Released x: "+ e.getX() + " y: " + e.getY());
 		

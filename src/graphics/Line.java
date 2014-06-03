@@ -55,7 +55,7 @@ public class Line extends JPanel{
 	{
 		xList.add(x);
 		yList.add(y);
-		redoLine();
+		//redoLine();
 		
 	}
 	

@@ -16,6 +16,7 @@ import control.CleanAction;
 import control.MoveAction;
 import control.TransparencyAction;
 import control.UndoAction;
+import control.UndoRedo;
 
 
 public class Config extends JComponent implements ActionListener{
@@ -23,6 +24,7 @@ public class Config extends JComponent implements ActionListener{
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	JPanel config = new JPanel();
 	public static JButton showSmallRing = new JButton("Show small ring");
@@ -155,6 +157,7 @@ public class Config extends JComponent implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("WOOOOOW");
 		
 		if("update".equals(e.getActionCommand()))
 		{
@@ -165,7 +168,9 @@ public class Config extends JComponent implements ActionListener{
 		
 		//System.out.println("new big radius: " + Config.getBigvalue());
 		//System.out.println("new penhole distance: " + Config.getPenhole());
+		
 		//System.out.println("new small radius: " + Config.getSmallvalue());
+		UndoRedo.stash();
 		}else
 		{
 			

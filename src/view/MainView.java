@@ -3,8 +3,11 @@ package view;
 import graphics.Themes;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import control.UndoRedo;
 
 
 @SuppressWarnings("serial")
@@ -22,7 +25,7 @@ Config config = new Config();
 		content.add(config.addParam(), BorderLayout.PAGE_START);
 		//content.setBorder(BorderFactory.createLineBorder(Color.RED));
 
-		
+		UndoRedo.stash();
 		setContentPane(content);
 		pack();
 	}
