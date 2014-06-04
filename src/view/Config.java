@@ -13,13 +13,16 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import control.CleanAction;
+import control.HelpAction;
 import control.MoveAction;
+import control.RedoAction;
 import control.TransparencyAction;
 import control.UndoAction;
 import control.UndoRedo;
+import control.UpdateAction;
 
 
-public class Config extends JComponent implements ActionListener{
+public class Config extends JComponent{
 
 	/**
 	 * 
@@ -48,12 +51,29 @@ public class Config extends JComponent implements ActionListener{
 	CleanAction cleanAct = new control.CleanAction();
 	MoveAction moveAct = new control.MoveAction();
 	UndoAction undoAct = new control.UndoAction();
+	RedoAction redoAct = new control.RedoAction();
+	UpdateAction updateAct = new control.UpdateAction();
+	
+	public static JButton helpGlassButton = new JButton();
+	HelpAction glassHelpAct = new control.HelpAction();
 	
 	public Config(){
+		
+		
+		
 		config.setPreferredSize(new Dimension(100, 100));
 	}
 	
 	public JComponent addParam(){
+		smallRadius.setToolTipText("Enter the new radius for the small circle here, then press 'Update' to see changes");
+		bigRadius.setToolTipText("Enter the new radius for the large circle here, then press 'Update' to see changes");
+		penhole.setToolTipText("Enter the new distance between the penhole and origo for the small circle here, then press 'Update' to see changes");
+		newX.setToolTipText("Enter the new x coordinate indicating where to move the spirograph, then press 'Change location for spirograph' to see changes");
+		newY.setToolTipText("Enter the new y coordinate indicating where to move the spirograph, then press 'Change location for spirograph' to see changes");
+		
+		showLargeRing.setToolTipText("Press here to hide the large circle");
+		showSmallRing.setToolTipText("Press here to hide the small circle");
+		
 		
 		
 		config.add(enterSmall);
@@ -66,14 +86,14 @@ public class Config extends JComponent implements ActionListener{
 		config.add(showSmallRing);
 		config.add(updateButton);
 		
-		updateButton.addActionListener(this);
-		updateButton.setActionCommand("update");
+		//updateButton.addActionListener(this);
+		//updateButton.setActionCommand("update");
 		
-		redoLine.addActionListener(this);
+	/*	redoLine.addActionListener(this);
 		redoLine.setActionCommand("redo");
 		
 		undoLine.addActionListener(this);
-		undoLine.setActionCommand("undo");
+		undoLine.setActionCommand("undo");*/
 		//showSmallRing.setBounds(10,20,10,20);
 		//this.add(updateButton);
 		//updateButton.setVisible(true);
@@ -96,7 +116,16 @@ public class Config extends JComponent implements ActionListener{
 		changeLocationButton.setAction(moveAct);
 		changeLocationButton.setText("Change location for spirograph");
 		undoLine.setAction(undoAct);
-		undoLine.setText("undo");
+		undoLine.setText("Undo");
+		updateButton.setAction(updateAct);
+		updateButton.setText("Update");
+		redoLine.setAction(redoAct);
+		redoLine.setText("Redo");
+		helpGlassButton.setToolTipText("Press here to get tooltips");
+		helpGlassButton.setAction(glassHelpAct);
+		helpGlassButton.setActionCommand("Help");
+		helpGlassButton.setText("Show tooltips");
+		config.add(helpGlassButton);
 		
 		
 		return config;
@@ -155,28 +184,6 @@ public class Config extends JComponent implements ActionListener{
 		}
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("WOOOOOW");
-		
-		if("update".equals(e.getActionCommand()))
-		{
-		updateButton.setEnabled(true);
-		DrawPanel.setBigRadius(Config.getBigvalue());
-		DrawPanel.setSmallRadius(Config.getSmallvalue());
-		DrawPanel.setPenhole(Config.getPenhole());
-		
-		//System.out.println("new big radius: " + Config.getBigvalue());
-		//System.out.println("new penhole distance: " + Config.getPenhole());
-		
-		//System.out.println("new small radius: " + Config.getSmallvalue());
-		UndoRedo.stash();
-		}else
-		{
-			
-			updateButton.setEnabled(true);
-		}
-	}
 }
 
 

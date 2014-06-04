@@ -8,7 +8,7 @@ import javax.swing.AbstractAction;
 import view.DrawPanel;
 import graphics.Line;
 
-public class UndoAction  extends AbstractAction{
+public class UndoAction extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

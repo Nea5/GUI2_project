@@ -87,6 +87,19 @@ public class UndoRedo {
 	}
 
 	
+	public static double[] performRedo(){
+			System.out.println("Counter är: " + " " + counter + "\n" + "Sista elementet i mapen är: " + " " + (map.size()-1));
+			
+			double[] restoreArray = {map.get(counter + "").get(0),map.get(counter +"").get(1), map.get(counter +"").get(2), map.get(counter +"").get(3) ,map.get(counter +"").get(4)};
+			System.out.println("New small r =" + restoreArray[0]);
+			if(counter < (map.size()-1)){
+				counter++;
+			}
+			
+			return restoreArray;
+		
+		
+	}
 	
 	
 	

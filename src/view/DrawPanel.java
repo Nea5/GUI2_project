@@ -173,7 +173,8 @@ public class DrawPanel extends JPanel implements ActionListener, MouseListener, 
 		  
 		  moveCircle(circles.getSmallCircle(), g2d, circles.getSmallCircle().getX(), circles.getSmallCircle().getY());
 
-		  //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,(float) 1.0));
+
+		  g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,(float) 1.0));
 		  g.setColor(testLine.getColor()); // red color on the line
 		  
 		  /*drawing line*/
