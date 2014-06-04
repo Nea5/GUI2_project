@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
 import control.CleanAction;
+import control.HelpAction;
 import control.MoveAction;
 import control.TransparencyAction;
 import control.UndoAction;
@@ -49,11 +50,26 @@ public class Config extends JComponent implements ActionListener{
 	MoveAction moveAct = new control.MoveAction();
 	UndoAction undoAct = new control.UndoAction();
 	
+	public static JButton helpGlassButton = new JButton();
+	HelpAction glassHelpAct = new control.HelpAction();
+	
 	public Config(){
+		
+		
+		
 		config.setPreferredSize(new Dimension(100, 100));
 	}
 	
 	public JComponent addParam(){
+		smallRadius.setToolTipText("Enter the new radius for the small circle here, then press 'Update' to see changes");
+		bigRadius.setToolTipText("Enter the new radius for the large circle here, then press 'Update' to see changes");
+		penhole.setToolTipText("Enter the new distance between the penhole and origo for the small circle here, then press 'Update' to see changes");
+		newX.setToolTipText("Enter the new x coordinate indicating where to move the spirograph, then press 'Change location for spirograph' to see changes");
+		newY.setToolTipText("Enter the new y coordinate indicating where to move the spirograph, then press 'Change location for spirograph' to see changes");
+		
+		showLargeRing.setToolTipText("Press here to hide the large circle");
+		showSmallRing.setToolTipText("Press here to hide the small circle");
+		
 		
 		
 		config.add(enterSmall);
@@ -97,6 +113,12 @@ public class Config extends JComponent implements ActionListener{
 		changeLocationButton.setText("Change location for spirograph");
 		undoLine.setAction(undoAct);
 		undoLine.setText("undo");
+		
+		helpGlassButton.setToolTipText("Press here to get tooltips");
+		helpGlassButton.setAction(glassHelpAct);
+		helpGlassButton.setActionCommand("Help");
+		helpGlassButton.setText("Show tooltips");
+		config.add(helpGlassButton);
 		
 		
 		return config;
