@@ -9,30 +9,23 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-/*
- * TODO Fix the memory leak, array size growing possibly 
- * reason of animation slowing down 
+/**
+ * @author Marcus Enderskog
+ * @author Luis Mauricio
+ * @author Jonas Rosenlind
+ * @author Linnea Sandelin
  */
 
 public class Line extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
 	private Color LINE_COLOR = Color.RED;
-	
-	private static List<Integer> xList;
-	private static List<Integer> yList;
-	
-	private static List<Integer> oldXList;
-	private static List<Integer> oldYList;
-	
-	private static List<Integer> redoXList;
-	private static List<Integer> redoYList;
-	
+	private static List<Integer> xList, yList, oldXList, oldYList, redoXList, redoYList;	
 	private BufferedImage canvas = new BufferedImage(3,3, BufferedImage.TYPE_INT_ARGB);
+	
+	/**
+	 * Sets up the storage for the x and y coordinates
+	 */
 	
 	public Line()
 	{
@@ -40,9 +33,13 @@ public class Line extends JPanel{
 		yList = new ArrayList<Integer>();
 	}
 
+	/**
+	 * Sets up the storage for the x and y coordinates and sets initial values
+	 * @param x
+	 * @param y
+	 */
 	public Line(int x, int y)
 	{
-		
 		xList = new ArrayList<Integer>();
 		yList = new ArrayList<Integer>();
 		xList.add(x);
@@ -50,86 +47,47 @@ public class Line extends JPanel{
 		
 	}
 	
+	/**
+	 * Add new coordinates 
+	 * @param x
+	 * @param y
+	 */
 	
 	public void addPointLine(int x, int y)
 	{
 		xList.add(x);
 		yList.add(y);
-		//redoLine();
-		
 	}
 	
+	/**
+	 * Draws the coordinates 
+	 * @param g
+	 */
+	
 	public void draw(Graphics g) {
-		//System.out.println("Arraysize: "+ xList.size());
-	      for (int i = 0; i < xList.size() - 1; ++i) {
-	    	  g.fillRect(xList.get(i), yList.get(i), 3, 3);
-	    	  
-	         
+	     
+		for (int i = 0; i < xList.size() - 1; ++i) {
+			g.fillRect(xList.get(i), yList.get(i), 3, 3); 
 	      }
 	}
 	
-	
-	public void setRandomColor()
-	{
-		double hue = Math.random();
-		int rgb = Color.HSBtoRGB((float)hue,(float)0.5,(float)0.5);
-		Color newColor = new Color(rgb);
-		//LINE_COLOR = newColor;
-		LINE_COLOR = Color.RED;
-	}
+	/**
+	 * Fetches the color of the line
+	 * @return
+	 */
 	
 	public Color getColor()
 	{
 		return LINE_COLOR;
 	}
 	
-
+	/**
+	 * Erases our previous line coordinates
+	 */
+	
 	public static void eraseLine() {
 		xList.clear();
 		yList.clear();
 	}
-	
-	public static void setUndo()
-	{
-		xList = oldXList;
-		yList = oldYList;
-		
-	}
-	
-	public static void setRedo()
-	{
-		xList = redoXList;
-		yList = redoYList;
-		
-	}
-	
-	public void undoLine()
-	{
-		oldXList = new ArrayList<Integer>(xList);
-		oldYList = new ArrayList<Integer>(yList);
-		System.out.println ("oldXList: " + oldXList.toString());
-		//Collections.copy(oldXList,xList);
-		//Collections.copy(oldYList,yList);
-	}
-	
-	public void redoLine()
-	{
-		//Collections.copy(redoXList,xList);
-		//Collections.copy(redoYList,yList);
-		redoXList = new ArrayList<Integer>(xList);
-		redoYList = new ArrayList<Integer>(yList);
-
-	}
-	
-	public void SizeOfoldXList()
-	{
-		System.out.println("Mouse pressed, arraysize: "+ oldXList.size());
-	}
-	
-	public void SizeOfcurrentXList()
-	{
-		System.out.println("Mouse released, arraysize: "+ redoXList.size());
-	}
-
 	
 }

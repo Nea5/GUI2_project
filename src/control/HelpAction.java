@@ -15,10 +15,17 @@ import javax.swing.JPanel;
 import view.Config;
 import view.MainView;
 
-
+/**
+ * @author Marcus Enderskog
+ * @author Luis Mauricio
+ * @author Jonas Rosenlind
+ * @author Linnea Sandelin
+ */
 public class HelpAction extends AbstractAction {
 
-	
+	/**
+	 * Displays the tooltips
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("Help".equals(((JButton) e.getSource()).getActionCommand())) {

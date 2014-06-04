@@ -1,59 +1,45 @@
 package view;
 
 import graphics.Themes;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
-
-import com.sun.media.sound.Toolkit;
-import com.sun.xml.internal.ws.api.server.Container;
-
 import control.HelpAction;
 import control.UndoRedo;
 
+/**
+ * @author Marcus Enderskog
+ * @author Luis Mauricio
+ * @author Jonas Rosenlind
+ * @author Linnea Sandelin
+ */
 
 @SuppressWarnings("serial")
 public class MainView extends JFrame implements MouseListener {
-JPanel content = new JPanel();
-Config config = new Config();
-public static JPanel glass  = new JPanel();
-JButton hideButton = new JButton();
-HelpAction helpAct = new HelpAction();
-JLabel glassText = new JLabel("This application has been developed by Marcus Enderskog, Luis Mauricio, Jonas Rosenlind and Linnea Sandelin");
+	
+	JPanel content = new JPanel();
+	Config config = new Config();
+	public static JPanel glass  = new JPanel();
+	JButton hideButton = new JButton();
+	HelpAction helpAct = new HelpAction();
+	JLabel glassText = new JLabel("This application has been developed by Marcus Enderskog, Luis Mauricio, Jonas Rosenlind and Linnea Sandelin");
+	
+	/**
+	 * Sets the default theme, layout, glasspane and stores our initial variables
+	 */
+	
 	public MainView() {
 		
 		Themes.setLocalTheme(this);
 		content.setLayout(new BorderLayout());
-		
-		//content.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		content.add(new DrawPanel(), BorderLayout.WEST);
 		content.add(config.addParam(), BorderLayout.PAGE_START);
-		//content.setBorder(BorderFactory.createLineBorder(Color.RED));
 
 		UndoRedo.stash();
-		
-		
-		
 		
 		setContentPane(content);
 		glass.setSize(content.getSize());
@@ -65,6 +51,10 @@ JLabel glassText = new JLabel("This application has been developed by Marcus End
 		pack();
 	}
 
+	/**
+	 * Adds the tooltips 
+	 */
+	
 	public void addToolTips() {
 
 	    glass.setVisible(false);
@@ -80,7 +70,7 @@ JLabel glassText = new JLabel("This application has been developed by Marcus End
 	  }
 
 
-
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 	}
@@ -101,14 +91,11 @@ JLabel glassText = new JLabel("This application has been developed by Marcus End
 		
 	}
 
-
-
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 
 	@Override

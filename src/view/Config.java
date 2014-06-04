@@ -1,81 +1,93 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 
+import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-
 import control.CleanAction;
 import control.HelpAction;
 import control.MoveAction;
 import control.RedoAction;
 import control.TransparencyAction;
 import control.UndoAction;
-import control.UndoRedo;
 import control.UpdateAction;
 
+/**
+ * @author Marcus Enderskog
+ * @author Luis Mauricio
+ * @author Jonas Rosenlind
+ * @author Linnea Sandelin
+ */
 
 public class Config extends JComponent{
 
-	/**
-	 * 
-	 */
-	
 	private static final long serialVersionUID = 1L;
+	
 	JPanel config = new JPanel();
+	
+	//Buttons
 	public static JButton showSmallRing = new JButton("Show small ring");
 	public static JButton showLargeRing = new JButton("Show large ring");
+	private JButton cleanButton = new JButton();
+	private JButton redoLine = new JButton("redo");
+	private JButton undoLine = new JButton("undo");
 	private JButton updateButton = new JButton("Update");
-	public static JButton cleanButton = new JButton();
 	public static JToggleButton changeLocationButton = new JToggleButton();
-	public static JButton redoLine = new JButton("redo");
-	public static JButton undoLine = new JButton("undo");
+	public static JButton helpGlassButton = new JButton();
+
+	//Textfields
 	static JTextField smallRadius = new JTextField("",3);
 	static JTextField bigRadius = new JTextField("",3);
 	static JTextField penhole = new JTextField("",3);
+	public static JTextField newX = new JTextField("",3);
+	public static JTextField newY = new JTextField("",3);
+	
+	//Labels
 	JLabel enterSmall = new JLabel("Enter small radius: ");
 	JLabel enterBig = new JLabel("Enter big radius: ");
 	JLabel enterPenhole = new JLabel("Enter penhole distance: ");
-	TransparencyAction transAct = new control.TransparencyAction();
-	public static JTextField newX = new JTextField("",3);
-	public static JTextField newY = new JTextField("",3);
 	JLabel enterNewX = new JLabel("Enter new x coordinate: ");
 	JLabel enterNewY = new JLabel("Enter new y coordinate: ");
+	
+	//Actions
+	TransparencyAction transAct = new control.TransparencyAction();
 	CleanAction cleanAct = new control.CleanAction();
 	MoveAction moveAct = new control.MoveAction();
 	UndoAction undoAct = new control.UndoAction();
 	RedoAction redoAct = new control.RedoAction();
 	UpdateAction updateAct = new control.UpdateAction();
-	
-	public static JButton helpGlassButton = new JButton();
 	HelpAction glassHelpAct = new control.HelpAction();
 	
+	/**
+	 * Sets the preferred size for the glasspane
+	 */
+	
 	public Config(){
-		
-		
 		
 		config.setPreferredSize(new Dimension(100, 100));
 	}
 	
+	/**
+	 * Adds buttons, tooltips and actions to the panel
+	 * @return JComponent representing the panel
+	 */
+	
 	public JComponent addParam(){
+		
+		//Tooltips
 		smallRadius.setToolTipText("Enter the new radius for the small circle here, then press 'Update' to see changes");
 		bigRadius.setToolTipText("Enter the new radius for the large circle here, then press 'Update' to see changes");
 		penhole.setToolTipText("Enter the new distance between the penhole and origo for the small circle here, then press 'Update' to see changes");
 		newX.setToolTipText("Enter the new x coordinate indicating where to move the spirograph, then press 'Change location for spirograph' to see changes");
 		newY.setToolTipText("Enter the new y coordinate indicating where to move the spirograph, then press 'Change location for spirograph' to see changes");
-		
 		showLargeRing.setToolTipText("Press here to hide the large circle");
 		showSmallRing.setToolTipText("Press here to hide the small circle");
 		
-		
-		
+		//Add things to panel
 		config.add(enterSmall);
 		config.add(smallRadius);
 		config.add(enterBig);
@@ -85,19 +97,6 @@ public class Config extends JComponent{
 		config.add(showLargeRing);
 		config.add(showSmallRing);
 		config.add(updateButton);
-		
-		//updateButton.addActionListener(this);
-		//updateButton.setActionCommand("update");
-		
-	/*	redoLine.addActionListener(this);
-		redoLine.setActionCommand("redo");
-		
-		undoLine.addActionListener(this);
-		undoLine.setActionCommand("undo");*/
-		//showSmallRing.setBounds(10,20,10,20);
-		//this.add(updateButton);
-		//updateButton.setVisible(true);
-
 		config.add(cleanButton);	
 		config.add(enterNewX);
 		config.add(newX);
@@ -106,6 +105,9 @@ public class Config extends JComponent{
 		config.add(changeLocationButton);
 		config.add(redoLine);
 		config.add(undoLine);
+		config.add(helpGlassButton);
+		
+		//Setup actions
 		showLargeRing.setAction(transAct);
 		showLargeRing.setActionCommand("Large");
 		showLargeRing.setText("Hide large circle");
@@ -125,24 +127,25 @@ public class Config extends JComponent{
 		helpGlassButton.setAction(glassHelpAct);
 		helpGlassButton.setActionCommand("Help");
 		helpGlassButton.setText("Show tooltips");
-		config.add(helpGlassButton);
-		
 		
 		return config;
 	}
 
+	/**
+	 * Collects the new small radius entered in the interface
+	 * @return the radius as a double
+	 */
+	
 	public static Double getSmallvalue(){
 		
 		try{
 			double input = Double.parseDouble(smallRadius.getText());
-			
-			if(input <= 0.0){
-				return 0.0;
-			}
-			
-			else{
-				return input;
-			}
+				if(input <= 0.0){
+					return 0.0;
+				}
+				else{
+					return input;
+				}
 		}
 			catch(NumberFormatException n){
 				return 0.0;
@@ -150,34 +153,43 @@ public class Config extends JComponent{
 			
 		}
 		
+	/**
+	 * Collects the new large radius entered in the interface
+	 * @return the radius as a double
+	 */
+	
 	public static Double getBigvalue(){
 		
 		try{
 			double input = Double.parseDouble(bigRadius.getText());
-			
-			if(input <= 0.0){
+				if(input <= 0.0){
 				return 0.0;
-			}
-			else{
+				}
+			
+				else{
 				return input;
-			}
+				}
 		}
 		catch(NumberFormatException n){
 			return 0.0;
 		}
 	}
-		
+	
+	/**
+	 * Collects the new penhole position entered in the interface
+	 * @return the penhole as a double
+	 */
+	
 	public static Double getPenhole(){
 		
 		try{
 			double input = Double.parseDouble(penhole.getText());
-			
-			if(input <= 0.0){
+				if(input <= 0.0){
 				return 0.0;
-			}
-			else{
+				}
+				else{
 				return input;
-			}
+				}
 		}
 		catch(NumberFormatException n){
 			return 0.0;

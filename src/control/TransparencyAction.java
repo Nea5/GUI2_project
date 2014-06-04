@@ -13,10 +13,18 @@ import view.Config;
 public class TransparencyAction extends AbstractAction {
 
 	/**
-	 * 
+	 * @author Marcus Enderskog
+	 * @author Luis Mauricio
+	 * @author Jonas Rosenlind
+	 * @author Linnea Sandelin
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Shows/hides the circles
+	 */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("Large".equals(((JButton) e.getSource()).getActionCommand())) {

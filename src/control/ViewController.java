@@ -8,27 +8,34 @@ import javax.swing.JFrame;
 
 import view.MainView;
 
+/**
+ * @author Marcus Enderskog
+ * @author Luis Mauricio
+ * @author Jonas Rosenlind
+ * @author Linnea Sandelin
+ */
+
 public class ViewController {
 
-	
 	private MainView mainView;
 	
-	public ViewController(MainView view)
-	{
+	/**
+	 * Updates the main view
+	 * @param view
+	 */
+	
+	public ViewController(MainView view){
 		mainView = view;
-
 	}
 
-	
+	/**
+	 * Draws our interface
+	 */
 	
 	public void drawView()
 	{
 		mainView.pack();
 		mainView.setTitle("SpiroGraph");
-		//mainView.setSize(400, 400);
-		//mainView.setLayout(new BorderLayout());
-		
-
 		mainView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainView.setLocationRelativeTo(null);
 		mainView.setVisible(true);

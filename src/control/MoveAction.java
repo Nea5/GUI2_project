@@ -10,19 +10,21 @@ import view.DrawPanel;
 public class MoveAction extends AbstractAction {
 
 	/**
-	 * 
+	 * @author Marcus Enderskog
+	 * @author Luis Mauricio
+	 * @author Jonas Rosenlind
+	 * @author Linnea Sandelin
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Get the new coordinates for the drawing area. Stores the current ones.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
 		try{
-
 			double tempX = Double.parseDouble(Config.newX.getText());
 			double tempY = Double.parseDouble(Config.newY.getText());
-			System.out.println("BEND OVER TO YOUR FRONT, TOUCH YA TOES");
 			
 			DrawPanel.setNewX(tempX);
 			DrawPanel.setNewY(tempY);
@@ -32,16 +34,6 @@ public class MoveAction extends AbstractAction {
 			}
 		catch(NumberFormatException n){
 			Config.changeLocationButton.setSelected(false);
-
-			System.out.println("No number! Move manually");
-	/*		double tempX = DrawPanel.getMouseX();
-			double tempY = DrawPanel.getMouseY();
-			[[XVÄRVDE, YVÄRDE, 2 fält till], 
-		    fun(x1 x2 s 
-			DrawPanel.setNewX(tempX);
-			DrawPanel.setNewY(tempY);	*/
-			
-			
 		}
 		
 	}

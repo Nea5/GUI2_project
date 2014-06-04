@@ -1,22 +1,25 @@
 package control;
 
 import java.awt.event.ActionEvent;
-import java.util.List;
-
 import javax.swing.AbstractAction;
-
 import view.DrawPanel;
-import graphics.Line;
+
+/**
+ * @author Marcus Enderskog
+ * @author Luis Mauricio
+ * @author Jonas Rosenlind
+ * @author Linnea Sandelin
+ */
 
 public class UndoAction extends AbstractAction{
 
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Fetches the previous variables 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//System.out.println("SKIT SKIT, motterfycker");
-
-
-	//	List<Double> temp = UndoRedo.stashgetter();
-//		System.out.println(temp.toString());
 
 		double[] x = UndoRedo.stashgetter();
 		   

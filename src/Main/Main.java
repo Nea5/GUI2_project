@@ -6,11 +6,22 @@ import javax.swing.SwingUtilities;
 import view.MainView;
 import control.ViewController;
 
-public class Main extends JFrame{
+/**
+ * @author Marcus Enderskog
+ * @author Luis Mauricio
+ * @author Jonas Rosenlind
+ * @author Linnea Sandelin
+ */
 
+public class Main extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Loads up the main frame
+	 * @param args
+	 */
+	
 	public static void main (String[] args){
 		
 		SwingUtilities.invokeLater(new Runnable(){
