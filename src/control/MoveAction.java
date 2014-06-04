@@ -19,6 +19,7 @@ public class MoveAction extends AbstractAction {
 		
 		
 		try{
+
 			double tempX = Double.parseDouble(Config.newX.getText());
 			double tempY = Double.parseDouble(Config.newY.getText());
 			System.out.println("BEND OVER TO YOUR FRONT, TOUCH YA TOES");
@@ -27,9 +28,11 @@ public class MoveAction extends AbstractAction {
 			DrawPanel.setNewY(tempY);
 			
 			UndoRedo.stash();
-			
+
 			}
 		catch(NumberFormatException n){
+			Config.changeLocationButton.setSelected(false);
+
 			System.out.println("No number! Move manually");
 	/*		double tempX = DrawPanel.getMouseX();
 			double tempY = DrawPanel.getMouseY();
